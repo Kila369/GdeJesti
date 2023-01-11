@@ -1,14 +1,23 @@
 import { StatusBar as ExpoStatusBar } from "expo-status-bar";
-import React from "react";
+import React, { useState } from "react";
 import { SafeAreaView, StyleSheet, Text, View, StatusBar } from "react-native";
+import { Searchbar } from "react-native-paper";
 
 export default function App() {
-  console.log();
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const onChangeSearch = (query) => setSearchQuery(query);
+
+  console.log(searchQuery);
   return (
     <>
       <SafeAreaView style={styles.container}>
         <View style={styles.search}>
-          <Text>search</Text>
+          <Searchbar
+            placeholder="Search"
+            onChangeText={onChangeSearch}
+            value={searchQuery}
+          />
         </View>
         <View style={styles.list}>
           <Text>list</Text>
