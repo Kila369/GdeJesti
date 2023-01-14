@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Card } from "react-native-paper";
 
 const Title = styled.Text`
+  font-family: ${(props) => props.theme.fonts.body};
   padding: ${(props) => props.theme.space[3]};
   color: ${(props) => props.theme.colors.ui.success};
 `;
