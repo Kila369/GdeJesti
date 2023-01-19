@@ -55,7 +55,6 @@ export default function App() {
       ),
     };
   };
-
   return (
     <>
       <ThemeProvider theme={theme}>
@@ -68,8 +67,8 @@ export default function App() {
             }}
           >
             <Tab.Screen name="Restaurants" component={RestaurantsScreen} />
-            <Tab.Screen name="Map" component={Settings} />
-            <Tab.Screen name="Settings" component={Map} />
+            <Tab.Screen name="Map" component={Map} />
+            <Tab.Screen name="Settings" component={Settings} />
           </Tab.Navigator>
         </NavigationContainer>
       </ThemeProvider>
