@@ -7,7 +7,7 @@ import { Spacer } from "../../../components/spacer/spacer.component";
 import { SafeArea } from "../../../components/utility/safe-area.component";
 import { RestaurantsContext } from "../../../services/restaurant service/restaurants.context";
 import { ActivityIndicator } from "react-native-paper";
-import { Search } from "../components/search.component";
+import { Search } from "../components/restaurant-search.component";
 
 const RestaurantList = styled(FlatList).attrs({
   contentContainerStyle: {
