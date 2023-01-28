@@ -3,6 +3,8 @@ import {
   getAuth,
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
+  onAuthStateChanged,
+  signOut,
 } from "firebase/auth";
 
 export const AuthContext = createContext();
@@ -13,9 +15,18 @@ export const AuthContextProvider = ({ children }) => {
   const [error, setError] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
+  const auth = getAuth();
+
+  onAuthStateChanged(auth, (u) => {
+    if (u) {
+      setUser(u);
+      setIsAuthenticated(true);
+    }
+  });
+
   const onLogin = (email, password) => {
     setIsLoading(true);
-    const auth = getAuth();
+
     signInWithEmailAndPassword(auth, email, password)
       .then((res) => {
         setUser(res);
@@ -33,7 +44,7 @@ export const AuthContextProvider = ({ children }) => {
       setError("Error: Password do not match");
       return;
     }
-    const auth = getAuth();
+    setIsLoading(true);
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         console.log(userCredential.user);
@@ -41,15 +52,35 @@ export const AuthContextProvider = ({ children }) => {
         setIsLoading(false);
         setIsAuthenticated(true);
       })
-      .catch((error) => {
-        setError(error.message);
+      .catch((e) => {
+        setError(e.message);
         setIsLoading(false);
+      });
+  };
+
+  const onLogout = () => {
+    signOut(auth)
+      .then(() => {
+        setUser(null);
+        setIsAuthenticated(false);
+      })
+      .catch((e) => {
+        setError(e);
       });
   };
 
   return (
     <AuthContext.Provider
-      value={{ user, isLoading, isAuthenticated, error, onLogin, onRegister }}
+      value={{
+        user,
+        isLoading,
+        isAuthenticated,
+        error,
+        onLogin,
+        onRegister,
+        setError,
+        onLogout,
+      }}
     >
       {children}
     </AuthContext.Provider>

@@ -9,9 +9,6 @@ import { useFonts as useLato, Lato_400Regular } from "@expo-google-fonts/lato";
 import { initializeApp } from "firebase/app";
 
 import { theme } from "./src/infrastructure/theme";
-import { RestaurantsContextProvider } from "./src/services/restaurant service/restaurants.context";
-import { LocationContextProvider } from "./src/services/location service/location.context";
-import { FavouritesContextProvider } from "./src/services/favourites service/favourites.context";
 import { Navigation } from "./src/infrastructure/navigation";
 import { AuthContextProvider } from "./src/services/auth service/auth.context";
 
@@ -43,13 +40,7 @@ export default function App() {
     <>
       <ThemeProvider theme={theme}>
         <AuthContextProvider>
-          <FavouritesContextProvider>
-            <LocationContextProvider>
-              <RestaurantsContextProvider>
-                <Navigation />
-              </RestaurantsContextProvider>
-            </LocationContextProvider>
-          </FavouritesContextProvider>
+          <Navigation />
         </AuthContextProvider>
       </ThemeProvider>
       <ExpoStatusBar style="auto" />

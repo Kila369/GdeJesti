@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import { Spacer } from "../../../components/spacer/spacer.component";
 import { Text } from "../../../components/typhography/text.component";
+import { ActivityIndicator } from "react-native-paper";
 
 import {
   AuthContainer,
@@ -15,7 +16,7 @@ export const RegisterScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repeatedPassword, setRepeatedPassword] = useState("");
-  const { onRegister, error } = useContext(AuthContext);
+  const { onRegister, isLoading, error, setError } = useContext(AuthContext);
 
   return (
     <SplashBackground>
@@ -54,17 +55,27 @@ export const RegisterScreen = ({ navigation }) => {
           </ErrorContainer>
         )}
         <Spacer size="large">
-          <AuthButton
-            icon="lock-open-outline"
-            mode="contained"
-            onPress={() => onRegister(email, password, repeatedPassword)}
-          >
-            Register
-          </AuthButton>
+          {isLoading ? (
+            <ActivityIndicator animating={true} color={"blue"} />
+          ) : (
+            <AuthButton
+              icon="lock-open-outline"
+              mode="contained"
+              onPress={() => onRegister(email, password, repeatedPassword)}
+            >
+              Register
+            </AuthButton>
+          )}
         </Spacer>
       </AuthContainer>
       <Spacer size="large">
-        <AuthButton mode="contained" onPress={() => navigation.goBack()}>
+        <AuthButton
+          mode="contained"
+          onPress={() => {
+            setError(null);
+            navigation.goBack();
+          }}
+        >
           Back
         </AuthButton>
       </Spacer>
