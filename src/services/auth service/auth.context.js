@@ -1,5 +1,9 @@
 import React, { useState, createContext } from "react";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+} from "firebase/auth";
 
 export const AuthContext = createContext();
 
@@ -20,13 +24,32 @@ export const AuthContextProvider = ({ children }) => {
       })
       .catch((e) => {
         setIsLoading(false);
-        setError(e.toString());
+        setError(e.message);
+      });
+  };
+
+  const onRegister = (email, password, repeatedPassword) => {
+    if (password !== repeatedPassword) {
+      setError("Error: Password do not match");
+      return;
+    }
+    const auth = getAuth();
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        console.log(userCredential.user);
+        setUser(userCredential.user);
+        setIsLoading(false);
+        setIsAuthenticated(true);
+      })
+      .catch((error) => {
+        setError(error.message);
+        setIsLoading(false);
       });
   };
 
   return (
     <AuthContext.Provider
-      value={{ user, isLoading, isAuthenticated, error, onLogin }}
+      value={{ user, isLoading, isAuthenticated, error, onLogin, onRegister }}
     >
       {children}
     </AuthContext.Provider>
