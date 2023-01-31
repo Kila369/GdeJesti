@@ -10,6 +10,7 @@ import {
 } from "../components/auth.styles";
 import { AuthInput } from "../components/auth.styles";
 import { AuthButton } from "../components/auth.styles";
+import { Title } from "../components/auth.styles";
 import { AuthContext } from "../../../services/auth service/auth.context";
 
 export const LoginScreen = ({ navigation }) => {
@@ -19,6 +20,7 @@ export const LoginScreen = ({ navigation }) => {
 
   return (
     <SplashBackground>
+      <Title>Meals to go</Title>
       <AuthContainer>
         <AuthInput
           label="Email"

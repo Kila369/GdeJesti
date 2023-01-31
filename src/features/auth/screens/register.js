@@ -7,6 +7,7 @@ import {
   AuthContainer,
   SplashBackground,
   ErrorContainer,
+  Title,
 } from "../components/auth.styles";
 import { AuthInput } from "../components/auth.styles";
 import { AuthButton } from "../components/auth.styles";
@@ -20,6 +21,7 @@ export const RegisterScreen = ({ navigation }) => {
 
   return (
     <SplashBackground>
+      <Title>Meals to go</Title>
       <AuthContainer>
         <AuthInput
           label="Email"

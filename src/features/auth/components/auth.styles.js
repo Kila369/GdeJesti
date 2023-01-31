@@ -11,13 +11,19 @@ export const SplashBackground = styled(ImageBackground).attrs({
   flex: 1;
   align-items: center;
   justify-content: center;
-  opacity: 0.8;
 `;
 
 export const AuthContainer = styled(View)`
   background-color: rgba(255, 255, 255, 0.8);
   padding: ${(props) => props.theme.space[4]};
   margin-top: ${(props) => props.theme.space[2]};
+`;
+
+export const AuthCover = styled(View)`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.2);
 `;
 
 export const AuthButton = styled(Button).attrs({
@@ -39,4 +45,12 @@ export const ErrorContainer = styled(View)`
   align-self: center;
   margin-top: ${(props) => props.theme.space[2]};
   margin-bottom: ${(props) => props.theme.space[2]};
+`;
+
+export const AnimationContainer = styled(View)`
+  height: 40%;
+  width: 100%;
+  position: absolute;
+  top: 30;
+  padding: ${(props) => props.theme.space[2]};
 `;
