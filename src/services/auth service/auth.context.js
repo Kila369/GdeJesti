@@ -47,7 +47,6 @@ export const AuthContextProvider = ({ children }) => {
     setIsLoading(true);
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        console.log(userCredential.user);
         setUser(userCredential.user);
         setIsLoading(false);
         setIsAuthenticated(true);
@@ -61,8 +60,8 @@ export const AuthContextProvider = ({ children }) => {
   const onLogout = () => {
     signOut(auth)
       .then(() => {
-        setUser(null);
         setIsAuthenticated(false);
+        setUser(null);
       })
       .catch((e) => {
         setError(e);

@@ -1,6 +1,6 @@
 import React from "react";
 import { SvgXml } from "react-native-svg";
-
+import { Platform } from "react-native";
 import { Text } from "../../../components/typhography/text.component.js";
 import { Spacer } from "../../../components/spacer/spacer.component.js";
 import { Favourite } from "../../../components/favourites/favourite.component.js";
@@ -33,8 +33,10 @@ export const RestaurantInfoCard = ({ restaurant }) => {
 
   const ratingArray = Array.from(new Array(Math.floor(rating)));
 
+  const elev = Platform.OS === "android" ? 0 : 5;
+
   return (
-    <RestaurantCard elevation={5}>
+    <RestaurantCard elevation={elev}>
       <Favourite restaurant={restaurant} />
       <RestaurantCardCover key={name} source={{ uri: photos[0] }} />
       <Info>
