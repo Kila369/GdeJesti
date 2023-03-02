@@ -1,11 +1,14 @@
 import camelize from "camelize";
+import { host } from "../../utils/env";
 
 export const locationRequest = (searchTerm) => {
-  return fetch(
-    `http://127.0.0.1:5001/hranazaponeti/us-central1/geoCode?city=${searchTerm}`
-  ).then((res) => {
-    return res.json();
-  });
+  return fetch(`${host}/geoCode?city=${searchTerm}`)
+    .then((res) => {
+      return res.json();
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 };
 
 export const locationTransform = ({ results }) => {
