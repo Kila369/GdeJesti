@@ -1,18 +1,22 @@
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable react/no-unstable-nested-components */
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { SafeArea } from "../../../components/utility/safe-area.component";
 import { RestaurantInfoCard } from "../components/restaurant-info-card.component";
 import { List } from "react-native-paper";
 import { ScrollView } from "react-native";
 import { Spacer } from "../../../components/spacer/spacer.component";
+import { OrderButton } from "../components/restaurant-list.styles";
+import { CartContext } from "../../../services/cart/cart.context";
 
-export const RestaurantDetailsScreen = ({ route }) => {
+export const RestaurantDetailsScreen = ({ route, navigation }) => {
   const { restaurant } = route.params;
   const [breakfastExpanded, setBreakfastExpanded] = useState(false);
   const [lunchExpanded, setLunchExpanded] = useState(false);
   const [dinnerExpanded, setDinnerExpanded] = useState(false);
   const [drinksExpanded, setDrinksExpanded] = useState(false);
+
+  const { addToCart } = useContext(CartContext);
 
   return (
     <SafeArea>
@@ -69,6 +73,18 @@ export const RestaurantDetailsScreen = ({ route }) => {
           <List.Item title="Fanta" />
         </List.Accordion>
       </ScrollView>
+      <Spacer position="bottom" size="large">
+        <OrderButton
+          mode="contained"
+          icon="cash"
+          onPress={() => {
+            addToCart({ item: "special", price: 1299 }, restaurant);
+            navigation.navigate("Checkout");
+          }}
+        >
+          Order Special only 12.99usd!
+        </OrderButton>
+      </Spacer>
     </SafeArea>
   );
 };

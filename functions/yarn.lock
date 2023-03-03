@@ -780,6 +780,11 @@ form-data@^4.0.0:
     combined-stream "^1.0.8"
     mime-types "^2.1.12"
 
+form-urlencoded@^1.5.1:
+  version "1.5.1"
+  resolved "https://registry.yarnpkg.com/form-urlencoded/-/form-urlencoded-1.5.1.tgz#fb69d16a6469363b3fdabf9d256a39a7a5ed2e13"
+  integrity sha512-1zo8DGUdxf7wylNzmvF+Mdpiaq/ndoiWSG4g6aXtPh43f4VOLgBK4u8ajs+X5IzLUYBqMYkQUPI8UZMC1lHYlQ==
+
 forwarded@0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/forwarded/-/forwarded-0.2.0.tgz#2269936428aad4c15c7ebe9779a84bf0b2a81811"
@@ -1533,6 +1538,13 @@ strip-ansi@^6.0.0, strip-ansi@^6.0.1:
   integrity sha512-Y38VPSHcqkFrCpFnQ9vuSXmquuv5oXOKpGeT6aGrr3o3Gc9AlVa6JBfUSOCnbxGGZF+/0ooI7KrPuUSztUdU5A==
   dependencies:
     ansi-regex "^5.0.1"
+
+stripe-client@^1.1.5:
+  version "1.1.5"
+  resolved "https://registry.yarnpkg.com/stripe-client/-/stripe-client-1.1.5.tgz#49e8a6f3c884fa96d5d8023c0d436b58ed7bf713"
+  integrity sha512-swwMU/12lqZFOOA7VdRm3zhpKqrICQihYt191z61oD73sGK5akYnvOa6k7A/XKCVg3I/PaHHM7BeNSbYrSrtCQ==
+  dependencies:
+    form-urlencoded "^1.5.1"
 
 stubs@^3.0.0:
   version "3.0.0"
