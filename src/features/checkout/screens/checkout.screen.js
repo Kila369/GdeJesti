@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { ScrollView } from "react-native";
 import { List } from "react-native-paper";
 
@@ -11,14 +11,23 @@ import {
   NameInput,
   PayButton,
   ClearButton,
+  PaymentProcessing,
 } from "../components/checkout.styles";
 import { CreditCardInput } from "../components/credit-card.component";
 import { RestaurantInfoCard } from "../../restaurants/components/restaurant-info-card.component";
 import { Spacer } from "../../../components/spacer/spacer.component";
 
-export const CheckoutScreen = () => {
+import { payRequest } from "../../../services/checkout/checkout.service";
+
+export const CheckoutScreen = ({ navigation }) => {
   const { cart, restaurant, sum, clearCart } = useContext(CartContext);
   const [name, setName] = useState("");
+  const [card, setCard] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    console.log("tu sam");
+  }, []);
 
   const cartList = cart.map(({ item, price }) => {
     return <List.Item title={`${item} - ${price / 100}`} />;
@@ -35,9 +44,34 @@ export const CheckoutScreen = () => {
     );
   }
 
+  const onPay = () => {
+    setIsLoading(true);
+    if (!card || !card.id) {
+      setIsLoading(false);
+      navigation.navigate("CheckoutError", {
+        error: "Molim vas unesite validnu kreditnu karticu!",
+      });
+      return;
+    }
+    console.log("odje");
+    payRequest(card.id, sum, name)
+      .then((result) => {
+        console.log(result);
+        setIsLoading(false);
+        navigation.navigate("CheckoutSuccess");
+        clearCart();
+      })
+      .catch((err) => {
+        console.log(err);
+        setIsLoading(false);
+        navigation.navigate("CheckoutError", { error: err });
+      });
+  };
+
   return (
     <SafeArea>
       <RestaurantInfoCard restaurant={restaurant} />
+      {isLoading && <PaymentProcessing />}
       <ScrollView>
         <Spacer position="left" size="medium">
           <Spacer position="top" size="large">
@@ -52,12 +86,32 @@ export const CheckoutScreen = () => {
           onChangeText={(text) => setName(text)}
         />
         <Spacer size="large">
-          {name.length > 0 && <CreditCardInput name={name} />}
+          {name.length > 0 && (
+            <CreditCardInput
+              name={name}
+              onSuccess={setCard}
+              onError={() =>
+                navigation.navigate("CheckoutError", {
+                  error: "Došlo je do greške prilikom obrade Vaše kartice",
+                })
+              }
+            />
+          )}
         </Spacer>
-        <PayButton icon="cash" mode="contained">
+        <PayButton
+          icon="cash"
+          mode="contained"
+          onPress={onPay}
+          disabled={isLoading}
+        >
           Plati
         </PayButton>
-        <ClearButton icon="cart-off" mode="contained" onPress={() => clearCart}>
+        <ClearButton
+          icon="cart-off"
+          mode="contained"
+          onPress={clearCart}
+          disabled={isLoading}
+        >
           Očisti korpu
         </ClearButton>
       </ScrollView>

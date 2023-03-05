@@ -16,6 +16,7 @@
     "@googlemaps/google-maps-services-js": "^3.3.27",
     "firebase-admin": "^10.0.2",
     "firebase-functions": "^3.18.0",
+    "stripe": "^11.13.0",
     "stripe-client": "^1.1.5"
   },
   "devDependencies": {
