@@ -23,22 +23,20 @@ export const SplashScreen = ({ navigation }) => {
           source={require("../../../../assets/watermelon.json")}
         />
       </AnimationContainer>
-      <Title>Meals to go</Title>
+      <Title>Gde jesti?</Title>
       <AuthContainer>
         <AuthButton
-          icon="lock-open-outline"
           mode="contained"
           onPress={() => navigation.navigate("Login")}
         >
-          Login
+          Prijavi se
         </AuthButton>
         <Spacer size="large">
           <AuthButton
-            icon="lock-open-outline"
             mode="contained"
             onPress={() => navigation.navigate("Register")}
           >
-            Register
+            Registruj se
           </AuthButton>
         </Spacer>
       </AuthContainer>

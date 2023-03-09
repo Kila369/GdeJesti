@@ -11,14 +11,15 @@ import { FavouritesContextProvider } from "../../services/favourites service/fav
 import { CartContextProvider } from "../../services/cart/cart.context";
 import { SettingsNavigator } from "./settings.navigator";
 import { CheckoutNavigator } from "./checkout.navigator";
+import { colors } from "../theme/colors";
 
 const Tab = createBottomTabNavigator();
 
 const TAB_ICON = {
-  Restaurants: "md-restaurant",
-  Settings: "md-settings",
-  Map: "md-map",
-  Checkout: "md-cart",
+  Restorani: "md-restaurant",
+  Podešavanja: "md-settings",
+  Mapa: "md-map",
+  Korpa: "md-cart",
 };
 
 const createScreenOptions = ({ route }) => {
@@ -39,15 +40,15 @@ export const AppNavigator = () => (
           <Tab.Navigator
             screenOptions={createScreenOptions}
             tabBarOptions={{
-              activeTintColor: "tomato",
-              inactiveTintColor: "gray",
+              activeTintColor: colors.brand.primary,
+              inactiveTintColor: colors.brand.muted,
             }}
             headerMode="none"
           >
-            <Tab.Screen name="Restaurants" component={RestaurantsNavigator} />
-            <Tab.Screen name="Map" component={MapScreen} />
-            <Tab.Screen name="Checkout" component={CheckoutNavigator} />
-            <Tab.Screen name="Settings" component={SettingsNavigator} />
+            <Tab.Screen name="Restorani" component={RestaurantsNavigator} />
+            <Tab.Screen name="Mapa" component={MapScreen} />
+            <Tab.Screen name="Korpa" component={CheckoutNavigator} />
+            <Tab.Screen name="Podešavanja" component={SettingsNavigator} />
           </Tab.Navigator>
         </CartContextProvider>
       </RestaurantsContextProvider>

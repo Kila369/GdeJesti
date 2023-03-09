@@ -21,7 +21,7 @@ export const RegisterScreen = ({ navigation }) => {
 
   return (
     <SplashBackground>
-      <Title>Meals to go</Title>
+      <Title>Gde jesti?</Title>
       <AuthContainer>
         <AuthInput
           label="Email"
@@ -33,7 +33,7 @@ export const RegisterScreen = ({ navigation }) => {
         />
         <Spacer size="large">
           <AuthInput
-            label="Password"
+            label="Lozinka"
             value={password}
             textContentType="password"
             secureTextEntry
@@ -43,7 +43,7 @@ export const RegisterScreen = ({ navigation }) => {
         </Spacer>
         <Spacer size="large">
           <AuthInput
-            label="Repeat Password"
+            label="Potvrdi Lozinku"
             value={repeatedPassword}
             textContentType="password"
             secureTextEntry
@@ -65,7 +65,7 @@ export const RegisterScreen = ({ navigation }) => {
               mode="contained"
               onPress={() => onRegister(email, password, repeatedPassword)}
             >
-              Register
+              Registruj se
             </AuthButton>
           )}
         </Spacer>
@@ -78,7 +78,7 @@ export const RegisterScreen = ({ navigation }) => {
             navigation.goBack();
           }}
         >
-          Back
+          Nazad
         </AuthButton>
       </Spacer>
     </SplashBackground>

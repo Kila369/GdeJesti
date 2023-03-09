@@ -10,6 +10,7 @@ import { SafeArea } from "../../../components/utility/safe-area.component";
 import { AuthContext } from "../../../services/auth service/auth.context";
 import { Text } from "../../../components/typhography/text.component";
 import { Spacer } from "../../../components/spacer/spacer.component";
+import { colors } from "../../../infrastructure/theme/colors";
 
 const SettingsItem = styled(List.Item)`
   padding: ${(props) => props.theme.space[3]};
@@ -38,7 +39,11 @@ export const SettingsScreen = ({ navigation }) => {
       <TouchableOpacity onPress={() => navigation.navigate("Camera")}>
         <AvatarContainter>
           {!photo ? (
-            <Avatar.Icon size={180} icon="human" backgroundColor="#2182BD" />
+            <Avatar.Icon
+              size={180}
+              icon="human"
+              backgroundColor={colors.brand.primary}
+            />
           ) : (
             <Avatar.Image
               size={180}
@@ -53,13 +58,13 @@ export const SettingsScreen = ({ navigation }) => {
       </TouchableOpacity>
       <List.Section>
         <SettingsItem
-          title="Favourites"
-          description="View your favourites"
+          title="Omiljeni restorani"
+          description="Pogledajte svoje omiljene restorane"
           left={(props) => <List.Icon {...props} color="black" icon="heart" />}
           onPress={() => navigation.navigate("Favourites")}
         />
         <SettingsItem
-          title="Log out"
+          title="Odjavi se"
           left={(props) => <List.Icon {...props} color="black" icon="door" />}
           onPress={onLogout}
         />

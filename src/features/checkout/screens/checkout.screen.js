@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { ScrollView } from "react-native";
 import { List } from "react-native-paper";
 
@@ -25,12 +25,8 @@ export const CheckoutScreen = ({ navigation }) => {
   const [card, setCard] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  useEffect(() => {
-    console.log("tu sam");
-  }, []);
-
   const cartList = cart.map(({ item, price }) => {
-    return <List.Item title={`${item} - ${price / 100}`} />;
+    return <List.Item title={`${item} - ${price}rsd`} />;
   });
 
   if (!cart.length || !restaurant) {
@@ -53,7 +49,6 @@ export const CheckoutScreen = ({ navigation }) => {
       });
       return;
     }
-    console.log("odje");
     payRequest(card.id, sum, name)
       .then((result) => {
         console.log(result);
@@ -77,7 +72,7 @@ export const CheckoutScreen = ({ navigation }) => {
           <Spacer position="top" size="large">
             <Text>Vaša narudžbina</Text>
             <List.Section>{cartList}</List.Section>
-            <Text>Ukupno: {sum / 100}</Text>
+            <Text>Ukupno: {sum}rsd</Text>
           </Spacer>
         </Spacer>
         <NameInput

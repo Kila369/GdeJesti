@@ -20,7 +20,7 @@ export const LoginScreen = ({ navigation }) => {
 
   return (
     <SplashBackground>
-      <Title>Meals to go</Title>
+      <Title>Gde Jesti?</Title>
       <AuthContainer>
         <AuthInput
           label="Email"
@@ -32,7 +32,7 @@ export const LoginScreen = ({ navigation }) => {
         />
         <Spacer size="large">
           <AuthInput
-            label="Password"
+            label="Lozinka"
             value={password}
             textContentType="password"
             secureTextEntry
@@ -54,7 +54,7 @@ export const LoginScreen = ({ navigation }) => {
               mode="contained"
               onPress={() => onLogin(email, password)}
             >
-              Login
+              Uloguj se
             </AuthButton>
           )}
         </Spacer>
@@ -67,7 +67,7 @@ export const LoginScreen = ({ navigation }) => {
             navigation.goBack();
           }}
         >
-          Back
+          Nazad
         </AuthButton>
       </Spacer>
     </SplashBackground>
