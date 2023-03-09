@@ -61,7 +61,7 @@ export const SettingsScreen = ({ navigation }) => {
           title="Omiljeni restorani"
           description="Pogledajte svoje omiljene restorane"
           left={(props) => <List.Icon {...props} color="black" icon="heart" />}
-          onPress={() => navigation.navigate("Favourites")}
+          onPress={() => navigation.navigate("Omiljeni")}
         />
         <SettingsItem
           title="Odjavi se"
