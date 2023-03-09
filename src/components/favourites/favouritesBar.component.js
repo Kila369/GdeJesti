@@ -17,7 +17,7 @@ export const FavouritesBar = ({ favourites, onNavigate }) => {
   return (
     <FavouritesWrapper>
       <Spacer size="medium" position="left">
-        <Text variant="caption">Favourites</Text>
+        <Text variant="caption">Omiljeni restorani</Text>
       </Spacer>
       <ScrollView horizontal showsHorizontalScrollIndicator={false}>
         {favourites.map((restaurant) => {
